@@ -140,6 +140,22 @@ body {
 	width: 3.5rem;
 }
 
+.submission {
+	float: right;
+}
+
+#proceed {
+	font-size: 0.8rem;
+	padding:0.2rem;
+	background-color:black;
+	color: white;
+	border-radius:0.25rem;
+}
+
+#proceed:hover {
+	background-color:gray;
+}
+
 footer {
 	width: 100%;
 }

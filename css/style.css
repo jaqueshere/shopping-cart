@@ -44,40 +44,88 @@ body {
 	height: 6rem;
 }
 
-.operations {
-	height: 12rem;
-	width: 15%;
-	float: left;
+.stripe {
+	background-color:cornflowerblue;
 }
 
-.buttons {
-	padding-top: 2em;
+.stripe > .content {
+	width: 22rem;
+	margin: 0 auto;
+	font-size: 0.75rem;
 }
 
-.buttons > .add-button {
-	width: 5rem;
+.col_header {
+	padding-left: 1rem;
+	text-align: center;
+}
+
+.add-button {
+	width: 7rem;
 	background-color:black;
 	border-color:black;
 	border-radius:0.25rem;
 	color: white;
-	font-size:1.125rem;
-	padding: .5rem 1rem;
-	margin-left: 0.25rem;
+	font-size:1rem;
+	padding: .1rem 1rem;
+	margin-left: 0.7rem;
 }
 
-.buttons > .add-button:hover {
+.add-button:hover {
 	background-color: gray;
 	border-color: gray;
 }
 
-.forms {
-	height: 12rem;
-	width: 85%;
-	float: left;
+.edit_buttons {
+	width: 8.5rem;
+	padding:0.5rem;
 }
 
-td {
+.little_button {
+	margin: 0 0.2rem;
+	color: white;
+	background-color: gray;
+	border-color: gray;
+	border-radius: 0.2rem;
+}
+
+.little_button:hover {
+	background-color: black;
+	border-color: black;
+	color: white;
+}
+
+.forms {
+	/*height: 24rem;*/
+	width: 60rem;
+	margin: 0 auto;
+	overflow: auto;
+}
+
+.workspace {
+	float: right;
+}
+
+.results {
+	float: right;
+	margin-top:1rem;
+}
+
+.clear {
+	clear: both;
+	line-height: 0;
+}
+
+#thelist > tbody > tr > td {
 	padding: 0.5rem 1rem;
+}
+
+#checkout > tbody > tr > td {
+	padding: 0.5rem 1rem;
+	text-align: right;
+}
+
+.resultstxt {
+	font-weight: bold;
 }
 
 #price_box {

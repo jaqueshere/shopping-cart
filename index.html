@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Shopping Cart</title>
+		<link rel="stylesheet" href="css/normalize.css">
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/style.css">
+	</head>
+	<body>
+		<nav class="top-nav">
+			<div class="content">
+				<div class="main-logo"><img src="images/shopping-cart.jpg" class="logo-pic"></div>
+				<div class="menu"><p></p></div>
+			</div>
+		</nav>
+		<section class="sash"></section>
+		<section class="workspace">
+			<!--consider replacing the horizontal divs with one table? -->
+			<div class="operations">
+				<div class="buttons">
+					<button class="add-button">Add</button>
+				</div>
+				<div class="small-buttons">
+					<!--awesome font buttons-->
+				</div>
+			</div>
+			<div class="forms">
+				<table>
+				<tr><td>Item description</td><td>Unit price</td><td>Quantity</td><td>Total</td></tr>
+				<tr><form><td id="desc_box"><input type="text" name="itemdescription"></td><td id="price_box"><div class="dollars">$<input type="text" name="unitprice" class="unitprice"></div></td><td id="quant_box"><input type="text" name="quantity"></td><td>$100.00</td></form></tr>
+				<tr><td>Octopus feathers</td><td>$3.21</td><td>4</td><td>$12.84</td></tr>
+				</table>
+			</div>
+		</section>
+		<footer>
+			<section class="credits"><h4>shopping cart logo copyright Free ClipArt Now</h4></section>
+		</footer>
+	</body>
+</html>

@@ -150,7 +150,7 @@ body {
 
 .container {
 	width: 80rem;
-	margin: 0 auto;
+	margin: 2rem auto;
 	z-index: 1;
 	position: relative;
 }

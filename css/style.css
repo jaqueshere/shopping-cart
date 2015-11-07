@@ -187,7 +187,7 @@ body {
 		width: 1rem;
 	}
 
-	#Price, #Total {
+	#Price, #Total_row {
 		width: 16.5rem;
 	}
 }
@@ -221,7 +221,7 @@ body {
 	float: right;
 }*/
 
-/* These lines are for a table that probably will not be used */
+
 .results {
 	float: right;
 	margin-top:1rem;
@@ -230,10 +230,6 @@ body {
 .clear {
 	clear: both;
 	line-height: 0;
-}
-
-#thelist > tbody > tr > td {
-	padding: 0.5rem 1rem;
 }
 
 #checkout > tbody > tr > td {
@@ -245,29 +241,9 @@ body {
 	font-weight: bold;
 }
 
-#price_box {
-	width: 7rem;
-}
-
-.dollars {
-	width: 5rem;
-}
-
-.unitprice {
-	width: 3.5rem;
-}
-
 .submission {
 	float: right;
 	position: relative;
-}
-
-#proceed {
-	/*font-size: 0.8rem;
-	padding:0.2rem;
-	background-color:black;
-	color: white;
-	border-radius:0.25rem;*/
 }
 
 #proceed:hover {

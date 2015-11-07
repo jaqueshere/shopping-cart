@@ -1,5 +1,6 @@
 $(document).ready(function() {
 	
+	/* This function calculates the total for the laptop-size layout */
 	$('.quantity').keyup( function(event){
 		var item = $('.SampleProduct').val();
 		var price = $('.Price').val();
@@ -9,6 +10,7 @@ $(document).ready(function() {
 		
 	});
 
+	/* This function calculates the total for the mobile-size layout */
 	$('#quantity').keyup(function() {
 		var item2 = $('#SampleProduct').val();
 		var price2 = $('#Price').val();
@@ -17,7 +19,7 @@ $(document).ready(function() {
 		$('#Total_row').attr("placeholder", total2).blur();
 	});
 	
-	
+	/* This function adds new items to the list for the laptop layout*/
 	$('#Addbtn').click(function() {
 		var item = $('.SampleProduct').val();
 		var price = $('.Price').val();
@@ -48,14 +50,30 @@ $(document).ready(function() {
 				</div>\
 			</nobr>");
 
-
 		$('#biglist').append(
 			bigtext);
 	});
 
+	/* This function adds new items to the list for the mobile layout*/
 	$('#Addbtn2').click(function() {
-		var testtext = "<div><p>This is a test</p></div>";
+		var item = $('#SampleProduct').val();
+		var price = $('#Price').val();
+		var quant = $('#quantity').val();
+		var total = price * quant;
+		var id = item;
+		var string = "";
+		var smallstring = string.concat("<form id='small_list' class='form-inline'>\
+					<div class='small_item form-group' id='", item, "'>\
+					<label class='sr-only'>Product description, quantity, and total cost</label>\
+					<div class='input-group col-sm-6' readonly>\
+						<div class='small_listitem input-group-addon'>", item, "</div>\
+						<input type='text' class='small_number form-control' placeholder='", quant, "'>\
+						<div class='small_listtotal input-group-addon'>$", total, "</div>\
+					</div>\
+				</div>\
+				</form>"
+			);
 		$('#small_list').append(
-			testtext);
+			smallstring);
 	});
 });

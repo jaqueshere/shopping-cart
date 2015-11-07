@@ -208,8 +208,16 @@ body {
 	display: none;
 }
 
-#small_item {
+.small_item {
 	width: 30rem;
+}
+
+.small_listitem {
+	width: 15rem;
+}
+
+.small_listtotal {
+	width: 8rem;
 }
 
 @media handheld, screen and (max-width: 700px) {

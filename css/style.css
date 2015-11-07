@@ -193,9 +193,14 @@ body {
 }
 
 #biglist > ul > li {
-	display: inline-block;
+	display: block;
 	padding: 1rem;
 	text-align: center;
+}
+
+.bigtext {
+	float: left;
+	padding-bottom: 0.25rem;
 }
 
 

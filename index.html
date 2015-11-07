@@ -35,7 +35,7 @@
 		<form id="bigworkspace" class="form-inline">
 			
 			<div class="form-group">
-				<div class="edit_buttons"><button type="submit" class="btn btn-primary" id="Addbtn">Add</button></div>
+				<div class="edit_buttons"><button type="button" class="btn btn-primary" id="Addbtn">Add</button></div>
 				<label class="sr-only">Product description</label>
 				<div class="input-group col-sm-4">
 					<input type="text" class="SampleProduct form-control" placeholder="Product description">
@@ -84,16 +84,16 @@
 				</div>
 			</div>
 			<div class="padthebutton">
-				<button type="submit" class="btn btn-primary">Add</button>
+				<button type="button" id="Addbtn2" class="btn btn-primary">Add</button>
 			</div>
 		</form>
 		
 		<hr />
 
 		<div class="list">
-			<nobr>
-			<form id="biglist" class="form-inline">
 			
+			<form id="biglist" class="form-inline">
+				<!--<nobr>
 				<div class="form-group">
 					<div class="edit_buttons"><button class="little_button"><i class="fa fa-trash"></i></button><button class="little_button"><i class="fa fa-pencil"></i></button><button class="little_button"><i class="fa fa-check"></i></button></div>
 					<label class="sr-only">Product description</label>
@@ -114,8 +114,9 @@
 						<input type="text" class="form-control" id="Total" placeholder="11.22" readonly>
 					</div>
 				</div>
+				</nobr>-->
 			</form>
-			</nobr>
+			
 
 			<form id="small_list" class="form-inline">
 			
@@ -138,7 +139,7 @@
 						<tr><td class="resultstxt">NY State and City Tax (8.875%):</td><td>$35.51</td></form></tr>
 						<tr><td class="resultstxt">Purchase Price:</td><td>$435.61</td></tr>
 					</table>
-					<div class="submission"><button button type="submit" class="btn btn-primary" id="proceed">Proceed to checkout</button></div>
+					<div class="submission"><button button type="button" class="btn btn-primary" id="proceed">Proceed to checkout</button></div>
 					
 		</section>
 	</div>

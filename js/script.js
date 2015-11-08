@@ -29,29 +29,91 @@ $(document).ready(function() {
 		var string = "";
 		var bigtext = string.concat("<nobr>\
 					<div class='bigtext form-group' id='", id, "' >\
-					<div class='edit_buttons'><button class='little_button'><i class='fa fa-trash'></i></button><button class='little_button'><i class='fa fa-pencil'></i></button><button class='little_button'><i class='fa fa-check'></i></button></div>\
+					<div class='edit_buttons'><button type='button' class='trash_button little_button'><i class='fa fa-trash'></i></button><button type='button' class='edit_button little_button'><i class='fa fa-pencil'></i></button><button type='button' class='purchased_button little_button'><i class='fa fa-check'></i></button></div>\
 					<label class='sr-only'>Product description</label>\
 					<div class='input-group col-sm-4'>\
-						<input type='text' class='form-control' id='SampleProduct' placeholder='", item, "' readonly>\
+						<input type='text' class='item_field form-control' placeholder='", item, "' readonly>\
 					</div>\
 					<label class='sr-only'>Unit price</label>\
 					<div class='input-group col-sm-2'>\
 						<div class='input-group-addon'>$</div>\
-						<input type='text' class='form-control' id='Price' placeholder='", price, "' readonly>\
+						<input type='text' class='price_field form-control' placeholder='", price, "' readonly>\
 					</div>\
 					<label class='sr-only'>Quantity</label>\
 					<div class='input-group col-sm-1'>\
-						<input type='text' class='form-control' id='quantity' placeholder='", quant, "' readonly>\
+						<input type='text' class='quantity_field form-control' placeholder='", quant, "' readonly>\
 					</div>\
 					<div class='input-group col-sm-2'>\
 						<div class='input-group-addon'>$</div>\
-						<input type='text' class='form-control' id='Total' placeholder='", total,"' readonly>\
+						<input type='text' class='total_field form-control' placeholder='", total,"' readonly>\
 					</div>\
 				</div>\
 			</nobr>");
 
 		$('#biglist').append(
 			bigtext);
+		/* This function toggles edit mode for the line in the shopping list
+	 	 * Adding it here to create a listener for every added line 
+	 	 */
+		$('.edit_button').click(function(){
+			$(this).parent().next().next().children().attr("readonly", false);
+			$(this).parent().next().next().next().next().children().attr("readonly", false);
+			$(this).parent().next().next().next().next().next().next().children().attr("readonly", false);
+		});
+
+		/* Finish editing the item field */
+		$('.item_field').keyup(function(e) {
+			if (e.keyCode == 13) {
+				console.log(this);
+				$(this).attr("readonly", true);
+			}
+		});
+
+		$('.item_field').keydown(function(e) {
+			if (e.keyCode == 9) {
+				console.log(this);
+				$(this).attr("readonly", true);
+			}
+		});
+
+		/* Finish editing the price field */
+		$('.price_field').keyup(function(e) {
+			if (e.keyCode == 13) {
+				console.log(this);
+				$(this).attr("readonly", true);
+				price = $(this).val();
+			}
+		});
+
+		$('.price_field').keydown(function(e) {
+			if (e.keyCode == 9) {
+				console.log(this);
+				$(this).attr("readonly", true);
+				price = $(this).val();
+			}
+		});
+
+		/* Finish editing the quantity field */
+		$('.quantity_field').keyup(function(e) {
+			if (e.keyCode == 13) {
+				console.log(this);
+				$(this).attr("readonly", true);
+				quant = $(this).val();
+				total = price * quant;
+				$(".total_field").val(total);
+			}
+		});
+
+		$('.quantity_field').keydown(function(e) {
+			if (e.keyCode == 9) {
+				console.log(this);
+				$(this).attr("readonly", true);
+				quant = $(this).val();
+				total = price * quant;
+				$(".total_field").val(total);
+			}
+		});
+
 	});
 
 	/* This function adds new items to the list for the mobile layout*/
@@ -76,4 +138,5 @@ $(document).ready(function() {
 		$('#small_list').append(
 			smallstring);
 	});
+
 });

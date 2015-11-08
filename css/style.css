@@ -270,4 +270,6 @@ footer {
 .credits {
 	width: 20rem;
 	margin: 0 auto;
+	font-size: 0.25rem;
+	text-align: center;
 }

@@ -21,11 +21,15 @@ $(document).ready(function() {
 	
 	/* This function adds new items to the list for the laptop layout*/
 	$('#Addbtn').click(function() {
-		var item = $('.SampleProduct').val();
-		var price = $('.Price').val();
-		var quant = $('.quantity').val();
+		var item = $('.SampleProduct').clone().val();
+		var price = $('.Price').clone().val();
+		var quant = $('.quantity').clone().val();
 		var total = price * quant;
 		var id = item;
+		$('.SampleProduct').val("");
+		$('.Price').val("");
+		$('.quantity').val("");
+		$('.Total').attr("placeholder","Total");
 		var string = "";
 		var bigtext = string.concat("<nobr>\
 					<div class='bigtext form-group' id='", id, "' >\
@@ -65,58 +69,86 @@ $(document).ready(function() {
 		});
 
 		/* Finish editing the item field */
-		$('.item_field').keyup(function(e) {
-			if (e.keyCode == 13) {
-				console.log(this);
+		$('.item_field').keydown(function(e) {
+			if (e.keyCode == 9) {
+				/* the following function just make the fontface match surrounding items
+				 * by converting user text to placeholder */
+				var string = $(this).clone().val();
+				$(this).attr("placeholder", string);
 				$(this).attr("readonly", true);
+				$(this).val("");
 			}
 		});
 
-		$('.item_field').keydown(function(e) {
-			if (e.keyCode == 9) {
-				console.log(this);
+		/* Finish editing the item field */
+		$('.item_field').keyup(function(e) {
+			if (e.keyCode == 13) {
+				/* the following two lines just make the fontface match surrounding items
+				 * by converting user text to placeholder */
+				var string = $(this).clone().val();
+				$(this).attr("placeholder", string);
 				$(this).attr("readonly", true);
+				$(this).val("");
 			}
 		});
 
 		/* Finish editing the price field */
 		$('.price_field').keyup(function(e) {
 			if (e.keyCode == 13) {
-				console.log(this);
+				var string = $(this).clone().val();
+				$(this).attr("placeholder", string);
 				$(this).attr("readonly", true);
-				temp_price = $(this).val();
+				temp_price = $(this).clone().val();
+				$(this).val("");
 			}
 		});
 
 		$('.price_field').keydown(function(e) {
 			if (e.keyCode == 9) {
-				console.log(this);
+				var string = $(this).clone().val();
+				$(this).attr("placeholder", string);
 				$(this).attr("readonly", true);
-				temp_price = $(this).val();
+				temp_price = $(this).clone().val();
+				$(this).val("");
 			}
 		});
 
 		/* Finish editing the quantity field */
 		$('.quantity_field').keyup(function(e) {
 			if (e.keyCode == 13) {
-				console.log(this);
+				
 				$(this).attr("readonly", true);
-				temp_quantity = $(this).val();
+				temp_quantity = $(this).clone().val();
 				temp_total = temp_price*temp_quantity;
-				$(this).parent().next().find('.total_field').val(temp_total);
+				$(this).parent().next().find('.total_field').attr("placeholder",temp_total);
+				$(this).val("");
 			}
 		});
 
 		$('.quantity_field').keydown(function(e) {
 			if (e.keyCode == 9) {
-				console.log(this);
+				
 				$(this).attr("readonly", true);
-				temp_quantity = $(this).val();
+				temp_quantity = $(this).clone().val();
 				temp_total = temp_price*temp_quantity;
-				$(this).parent().next().find('.total_field').val(temp_total);
+				$(this).parent().next().find('.total_field').attr("placeholder",temp_total);
+				$(this).val("");
 			}
 		});
 
+		/* Calculate and display cart subtotal */
+		var running_total = 0;
+		var tax = 0;
+		var grand_total = 0;
+		for (i in $('.list').find('.total_field')) {
+			running_total += parseInt($('.list').find('.total_field').attr("placeholder"));
+			console.log("hi\n");
+		}
+		tax = 0.0875 * running_total;
+		grand_total = running_total + tax;
+		$('.cart_total').text(running_total);
+		$('.tax').text(tax);
+		$('.grand_total').text(grand_total);
 	});
 
 	/* This function adds new items to the list for the mobile layout*/

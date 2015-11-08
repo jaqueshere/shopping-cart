@@ -49,6 +49,9 @@ $(document).ready(function() {
 					</div>\
 				</div>\
 			</nobr>");
+		var temp_price = 0;
+		var temp_quantity = 0;
+		var temp_total = 0;
 
 		$('#biglist').append(
 			bigtext);
@@ -81,7 +84,7 @@ $(document).ready(function() {
 			if (e.keyCode == 13) {
 				console.log(this);
 				$(this).attr("readonly", true);
-				price = $(this).val();
+				temp_price = $(this).val();
 			}
 		});
 
@@ -89,7 +92,7 @@ $(document).ready(function() {
 			if (e.keyCode == 9) {
 				console.log(this);
 				$(this).attr("readonly", true);
-				price = $(this).val();
+				temp_price = $(this).val();
 			}
 		});
 
@@ -98,9 +101,9 @@ $(document).ready(function() {
 			if (e.keyCode == 13) {
 				console.log(this);
 				$(this).attr("readonly", true);
-				quant = $(this).val();
-				total = price * quant;
-				$(".total_field").val(total);
+				temp_quantity = $(this).val();
+				temp_total = temp_price*temp_quantity;
+				$(this).parent().next().find('.total_field').val(temp_total);
 			}
 		});
 
@@ -108,9 +111,9 @@ $(document).ready(function() {
 			if (e.keyCode == 9) {
 				console.log(this);
 				$(this).attr("readonly", true);
-				quant = $(this).val();
-				total = price * quant;
-				$(".total_field").val(total);
+				temp_quantity = $(this).val();
+				temp_total = temp_price*temp_quantity;
+				$(this).parent().next().find('.total_field').val(temp_total);
 			}
 		});
 

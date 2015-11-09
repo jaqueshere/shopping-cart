@@ -64,7 +64,6 @@ $(document).ready(function() {
 	 	 * Adding it here to create a listener for every added line 
 	 	 * Adding global variable id to bind listeners to lines
 	 	 */
-
 		$('#' + id).find('.edit_button').click(function(){
 			$(this).parent().next().next().children().attr("readonly", false);
 			$(this).parent().next().next().next().next().children().attr("readonly", false);
@@ -72,12 +71,15 @@ $(document).ready(function() {
 
 			/* Finish editing the item field 
 			 * Added id specifier to try to prevent duplicate listeners on lines
-			 */
-			 
+			 * Added !readonly check to make sure handlers are only editing open items
+			 */ 
 			$('#' + id).find('.item_field').keydown(function(e) {
 				if ((e.keyCode == 9) && !($(this).prop("readonly"))) {
 					/* the following function just make the fontface match surrounding items
-					 * by converting user text to placeholder */
+					 * by converting user text to placeholder.
+					 * The clone() function is used to keep string and placeholder
+					 * from getting erased when $(this).val() is set to ""
+					 **/
 					var string = $(this).clone().val();
 					console.log($(this).val(), $(this).attr("placeholder"));
 					$(this).attr("placeholder", string);
@@ -142,6 +144,14 @@ $(document).ready(function() {
 				}
 			});
 
+		});
+
+		$('#' + id).find('.trash_button').click(function(e) {
+			var sure = confirm("Are you sure?");
+			if (sure == true) {
+				$(this).parent().parent().parent().parent().empty();
+				$(this).parent().parent().parent().parent().remove();
+			}
 		});
 
 		/* Calculate and display cart subtotal */

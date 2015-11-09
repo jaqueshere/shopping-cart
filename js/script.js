@@ -59,81 +59,89 @@ $(document).ready(function() {
 
 		$('#biglist').append(
 			bigtext);
+
 		/* This function toggles edit mode for the line in the shopping list
 	 	 * Adding it here to create a listener for every added line 
+	 	 * Adding global variable id to bind listeners to lines
 	 	 */
-		$('.edit_button').click(function(){
+
+		$('#' + id).find('.edit_button').click(function(){
 			$(this).parent().next().next().children().attr("readonly", false);
 			$(this).parent().next().next().next().next().children().attr("readonly", false);
 			$(this).parent().next().next().next().next().next().next().children().attr("readonly", false);
-		});
 
-		/* Finish editing the item field */
-		$('.item_field').keydown(function(e) {
-			if (e.keyCode == 9) {
-				/* the following function just make the fontface match surrounding items
-				 * by converting user text to placeholder */
-				var string = $(this).clone().val();
-				$(this).attr("placeholder", string);
-				$(this).attr("readonly", true);
-				$(this).val("");
-			}
-		});
+			/* Finish editing the item field 
+			 * Added id specifier to try to prevent duplicate listeners on lines
+			 */
+			 
+			$('#' + id).find('.item_field').keydown(function(e) {
+				if ((e.keyCode == 9) && !($(this).prop("readonly"))) {
+					/* the following function just make the fontface match surrounding items
+					 * by converting user text to placeholder */
+					var string = $(this).clone().val();
+					console.log($(this).val(), $(this).attr("placeholder"));
+					$(this).attr("placeholder", string);
+					$(this).attr("readonly", true);
+					$(this).val("");
+				}
+			});
 
-		/* Finish editing the item field */
-		$('.item_field').keyup(function(e) {
-			if (e.keyCode == 13) {
-				/* the following two lines just make the fontface match surrounding items
-				 * by converting user text to placeholder */
-				var string = $(this).clone().val();
-				$(this).attr("placeholder", string);
-				$(this).attr("readonly", true);
-				$(this).val("");
-			}
-		});
+			/* Finish editing the item field */
+			$('#' + id).find('.item_field').keyup(function(e) {
+				if ((e.keyCode == 13) && !($(this).prop("readonly"))) {
+					/* the following two lines just make the fontface match surrounding items
+					 * by converting user text to placeholder */
+					var string = $(this).clone().val();
+					$(this).attr("placeholder", string);
+					$(this).attr("readonly", true);
+					$(this).val("");
+				}
+			});
 
-		/* Finish editing the price field */
-		$('.price_field').keyup(function(e) {
-			if (e.keyCode == 13) {
-				var string = $(this).clone().val();
-				$(this).attr("placeholder", string);
-				$(this).attr("readonly", true);
-				temp_price = $(this).clone().val();
-				$(this).val("");
-			}
-		});
+			/* Finish editing the price field */
+			$('#' + id).find('.price_field').keyup(function(e) {
+				if ((e.keyCode == 13) && !($(this).prop("readonly"))) {
+					var string = $(this).clone().val();
+					$(this).attr("placeholder", string);
+					$(this).attr("readonly", true);
+					temp_price = $(this).clone().val();
+					$(this).val("");
+				}
+			});
 
-		$('.price_field').keydown(function(e) {
-			if (e.keyCode == 9) {
-				var string = $(this).clone().val();
-				$(this).attr("placeholder", string);
-				$(this).attr("readonly", true);
-				temp_price = $(this).clone().val();
-				$(this).val("");
-			}
-		});
+			$('#' + id).find('.price_field').keydown(function(e) {
+				if ((e.keyCode == 9) && !($(this).prop("readonly"))) {
+					var string = $(this).clone().val();
+					$(this).attr("placeholder", string);
+					$(this).attr("readonly", true);
+					temp_price = $(this).clone().val();
+					$(this).val("");
+				}
+			});
 
-		/* Finish editing the quantity field */
-		$('.quantity_field').keyup(function(e) {
-			if (e.keyCode == 13) {
-				
-				$(this).attr("readonly", true);
-				temp_quantity = $(this).clone().val();
-				temp_total = temp_price*temp_quantity;
-				$(this).parent().next().find('.total_field').attr("placeholder",temp_total);
-				$(this).val("");
-			}
-		});
+			/* Finish editing the quantity field */
+			$('#' + id).find('.quantity_field').keyup(function(e) {
+				if ((e.keyCode == 13) && !($(this).prop("readonly"))) {
+					
+					$(this).attr("readonly", true);
+					temp_quantity = $(this).clone().val();
+					temp_total = temp_price*temp_quantity;
+					$(this).parent().next().find('.total_field').attr("placeholder",temp_total);
+					$(this).val("");
+				}
+			});
 
-		$('.quantity_field').keydown(function(e) {
-			if (e.keyCode == 9) {
-				
-				$(this).attr("readonly", true);
-				temp_quantity = $(this).clone().val();
-				temp_total = temp_price*temp_quantity;
-				$(this).parent().next().find('.total_field').attr("placeholder",temp_total);
-				$(this).val("");
-			}
+			$('#' + id).find('.quantity_field').keydown(function(e) {
+				if ((e.keyCode == 9) && !($(this).prop("readonly"))) {
+					
+					$(this).attr("readonly", true);
+					temp_quantity = $(this).clone().val();
+					temp_total = temp_price*temp_quantity;
+					$(this).parent().next().find('.total_field').attr("placeholder",temp_total);
+					$(this).val("");
+				}
+			});
+
 		});
 
 		/* Calculate and display cart subtotal */

@@ -33,7 +33,7 @@ $(document).ready(function() {
 		var string = "";
 		var bigtext = string.concat("<nobr>\
 					<div class='bigtext form-group' id='", id, "' >\
-					<div class='edit_buttons'><button type='button' class='trash_button little_button'><i class='fa fa-trash'></i></button><button type='button' class='edit_button little_button'><i class='fa fa-pencil'></i></button><button type='button' class='purchased_button little_button'><i class='fa fa-check'></i></button></div>\
+					<div class='edit_buttons'><button type='button' class='trash_button little_button'><i class='fa fa-trash'></i></button><button type='button' class='edit_button little_button'><i class='fa fa-pencil'></i></button></div>\
 					<label class='sr-only'>Product description</label>\
 					<div class='input-group col-sm-4'>\
 						<input type='text' class='item_field form-control' placeholder='", item, "' readonly>\
@@ -149,9 +149,13 @@ $(document).ready(function() {
 		$('#' + id).find('.trash_button').click(function(e) {
 			var sure = confirm("Are you sure?");
 			if (sure == true) {
-				$(this).parent().parent().parent().parent().empty();
-				$(this).parent().parent().parent().parent().remove();
+				$(this).parent().parent().parent().empty();
+				$(this).parent().parent().parent().remove();
 			}
+		});
+
+		$('#' + id).find('.purchased_button').click(function(e) {
+			$('#' + id).find(':text').style.textDecoration = "strike-through";
 		});
 
 		/* Calculate and display cart subtotal */

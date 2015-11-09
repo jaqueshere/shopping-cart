@@ -85,7 +85,7 @@ body {
 }
 
 #Addbtn {
-	width:10rem;
+	width:7rem;
 	display:inline-block;
 }
 
@@ -108,7 +108,7 @@ body {
 }
 
 .edit_buttons {
-	width: 10rem;
+	width: 7rem;
 	padding:0;
 	display: inline-block;
 }

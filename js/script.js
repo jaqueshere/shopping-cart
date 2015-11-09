@@ -187,6 +187,14 @@ $(document).ready(function() {
 		$('#' + id).find('.trash_button').click(function(e) {
 			var sure = confirm("Are you sure?");
 			if (sure == true) {
+				var old_total = $(this).parent().parent().find('.total_field').attr("placeholder");
+				var tempsubtotal = $('.cart_total').text();
+				tempsubtotal = tempsubtotal - old_total;
+				$('.cart_total').text(tempsubtotal);
+				var temptax = 0.08875 * tempsubtotal;
+				var tempgrand = tempsubtotal + temptax;
+				$('.tax').text(temptax);
+				$('.grand_total').text(tempgrand);
 				$(this).parent().parent().parent().empty();
 				$(this).parent().parent().parent().remove();
 			}

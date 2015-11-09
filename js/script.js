@@ -1,5 +1,9 @@
 $(document).ready(function() {
 	
+		var running_total = 0;
+		var tax = 0;
+		var grand_total = 0;
+
 	/* This function calculates the total for the laptop-size layout */
 	$('.quantity').keyup( function(event){
 		var item = $('.SampleProduct').val();
@@ -56,10 +60,18 @@ $(document).ready(function() {
 		var temp_price = 0;
 		var temp_quantity = 0;
 		var temp_total = 0;
-
+		
 		$('#biglist').append(
 			bigtext);
 
+		/* Calculate and display cart subtotal */
+		running_total += total;
+		tax = 0.0875 * running_total;
+		grand_total = running_total + tax;
+		$('.cart_total').text(running_total);
+		$('.tax').text(tax);
+		$('.grand_total').text(grand_total);
+		
 		/* This function toggles edit mode for the line in the shopping list
 	 	 * Adding it here to create a listener for every added line 
 	 	 * Adding global variable id to bind listeners to lines
@@ -126,8 +138,21 @@ $(document).ready(function() {
 				if ((e.keyCode == 13) && !($(this).prop("readonly"))) {
 					
 					$(this).attr("readonly", true);
+					//recalculate running total
 					temp_quantity = $(this).clone().val();
+					temp_price = parseInt($(this).parent().parent().find('.price_field').clone().attr("placeholder"));
+					
 					temp_total = temp_price*temp_quantity;
+					
+					var old_total = $(this).parent().next().find('.total_field').attr("placeholder");
+					var tempsubtotal = $('.cart_total').text();
+					tempsubtotal = tempsubtotal - old_total;
+					tempsubtotal = tempsubtotal + temp_total;
+					$('.cart_total').text(tempsubtotal);
+					var temptax = 0.08875 * tempsubtotal;
+					var tempgrand = tempsubtotal + temptax;
+					$('.tax').text(temptax);
+					$('.grand_total').text(tempgrand);
 					$(this).parent().next().find('.total_field').attr("placeholder",temp_total);
 					$(this).val("");
 				}
@@ -137,8 +162,21 @@ $(document).ready(function() {
 				if ((e.keyCode == 9) && !($(this).prop("readonly"))) {
 					
 					$(this).attr("readonly", true);
+					//recalculate running total
 					temp_quantity = $(this).clone().val();
+					temp_price = parseInt($(this).parent().parent().find('.price_field').clone().attr("placeholder"));
+					
 					temp_total = temp_price*temp_quantity;
+					
+					var old_total = $(this).parent().next().find('.total_field').attr("placeholder");
+					var tempsubtotal = $('.cart_total').text();
+					tempsubtotal = tempsubtotal - old_total;
+					tempsubtotal = tempsubtotal + temp_total;
+					$('.cart_total').text(tempsubtotal);
+					var temptax = 0.08875 * tempsubtotal;
+					var tempgrand = tempsubtotal + temptax;
+					$('.tax').text(temptax);
+					$('.grand_total').text(tempgrand);
 					$(this).parent().next().find('.total_field').attr("placeholder",temp_total);
 					$(this).val("");
 				}
@@ -153,24 +191,6 @@ $(document).ready(function() {
 				$(this).parent().parent().parent().remove();
 			}
 		});
-
-		$('#' + id).find('.purchased_button').click(function(e) {
-			$('#' + id).find(':text').style.textDecoration = "strike-through";
-		});
-
-		/* Calculate and display cart subtotal */
-		var running_total = 0;
-		var tax = 0;
-		var grand_total = 0;
-		for (i in $('.list').find('.total_field')) {
-			running_total += parseInt($('.list').find('.total_field').attr("placeholder"));
-			console.log("hi\n");
-		}
-		tax = 0.0875 * running_total;
-		grand_total = running_total + tax;
-		$('.cart_total').text(running_total);
-		$('.tax').text(tax);
-		$('.grand_total').text(grand_total);
 	});
 
 	/* This function adds new items to the list for the mobile layout*/

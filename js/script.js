@@ -30,6 +30,11 @@ $(document).ready(function() {
 		var quant = $('.quantity').clone().val();
 		var total = price * quant;
 		var id = item;
+		if ((item == "") || (price == "") || (quant == "")) {
+			alert("Please complete the form!");	
+			return 0;
+		}
+		
 		$('.SampleProduct').val("");
 		$('.Price').val("");
 		$('.quantity').val("");

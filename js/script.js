@@ -10,7 +10,7 @@ $(document).ready(function() {
 		var price = $('.Price').val();
 		var quant = $('.quantity').val();
 		var total = price * quant;
-		$('.Total').attr("placeholder", total).blur();
+		$('.Total').attr("placeholder", total.toFixed(2)).blur();
 		
 	});
 
@@ -20,7 +20,7 @@ $(document).ready(function() {
 		var price2 = $('#Price').val();
 		var quant2 = $('#quantity').val();
 		var total2 = price2 * quant2;
-		$('#Total_row').attr("placeholder", total2).blur();
+		$('#Total_row').attr("placeholder", total2.toFixed(2)).blur();
 	});
 	
 	/* This function adds new items to the list for the laptop layout*/
@@ -28,7 +28,7 @@ $(document).ready(function() {
 		var item = $('.SampleProduct').clone().val();
 		var price = $('.Price').clone().val();
 		var quant = $('.quantity').clone().val();
-		var total = price * quant;
+		var total = (price * quant);
 		var id = item;
 		if ((item == "") || (price == "") || (quant == "")) {
 			alert("Please complete the form!");	
@@ -58,7 +58,7 @@ $(document).ready(function() {
 					</div>\
 					<div class='input-group col-sm-2'>\
 						<div class='input-group-addon'>$</div>\
-						<input type='text' class='total_field form-control' placeholder='", total,"' readonly>\
+						<input type='text' class='total_field form-control' placeholder='", total.toFixed(2),"' readonly>\
 					</div>\
 				</div>\
 			</nobr>");
@@ -73,9 +73,9 @@ $(document).ready(function() {
 		running_total += total;
 		tax = 0.0875 * running_total;
 		grand_total = running_total + tax;
-		$('.cart_total').text(running_total);
-		$('.tax').text(tax);
-		$('.grand_total').text(grand_total);
+		$('.cart_total').text(running_total.toFixed(2));
+		$('.tax').text(tax.toFixed(2));
+		$('.grand_total').text(grand_total.toFixed(2));
 		
 		/* This function toggles edit mode for the line in the shopping list
 	 	 * Adding it here to create a listener for every added line 
@@ -220,13 +220,26 @@ $(document).ready(function() {
 					<div class='input-group col-sm-6' readonly>\
 						<div class='small_listitem input-group-addon'>", item, "</div>\
 						<input type='text' class='small_number form-control' placeholder='", quant, "'>\
-						<div class='small_listtotal input-group-addon'>$", total, "</div>\
+						<div class='small_listtotal input-group-addon'>$", total.toFixed(2), "</div>\
 					</div>\
 				</div>\
 				</form>"
 			);
 		$('#small_list').append(
 			smallstring);
+
+		$('#SampleProduct').val("");
+		$('#Price').val("");
+		$('#quantity').val("");
+		$('#Total').attr("placeholder","Total");
+		
+		/* Calculate and display cart subtotal */
+		running_total += total;
+		tax = 0.0875 * running_total;
+		grand_total = running_total + tax;
+		$('.cart_total').text(running_total.toFixed(2));
+		$('.tax').text(tax.toFixed(2));
+		$('.grand_total').text(grand_total.toFixed(2));
 	});
 
 });
